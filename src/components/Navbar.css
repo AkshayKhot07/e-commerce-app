@@ -42,7 +42,8 @@ h3 {
   cursor: pointer;
 }
 
-.navbar-links a {
+.navbar-links a,
+.navbar-title a {
   text-decoration: none;
   color: black;
 }

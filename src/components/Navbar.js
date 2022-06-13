@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useLogout } from "../hooks/useLogout";
 
 //styles and images
 import "./Navbar.css";
@@ -7,11 +8,16 @@ import CartIcon from "../assets/cart-icon.svg";
 
 export default function Navbar() {
   const { user } = useAuthContext();
+  const { logout } = useLogout();
 
   return (
     <div className="navbar">
       <div className="navbar-title">
-        <h2>Art Collection</h2>
+        <h2>
+          <NavLink exact to="/">
+            Art Collection
+          </NavLink>
+        </h2>
       </div>
 
       <div className="navbar-links">
@@ -22,8 +28,10 @@ export default function Navbar() {
 
         {!user && (
           <>
-            <h3 className="login">Login</h3>
-            <h3 className="register">
+            <h3 className="navbar-login">
+              <NavLink to="/login">Login</NavLink>
+            </h3>
+            <h3 className="navbar-register">
               <NavLink to="/signup">Register</NavLink>
             </h3>
           </>
@@ -32,7 +40,9 @@ export default function Navbar() {
         {user && (
           <>
             <h3 className="orders">Orders</h3>
-            <h3 className="logout">Logout</h3>
+            <h3 className="logout" onClick={logout}>
+              Logout
+            </h3>
           </>
         )}
       </div>

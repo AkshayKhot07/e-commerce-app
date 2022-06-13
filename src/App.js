@@ -5,6 +5,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 import Navbar from "./components/Navbar";
 import AddArtwork from "./pages/addartwork/AddArtwork";
 import Signup from "./pages/signup/Signup.js";
+import Login from "./pages/login/Login";
 import Home from "./pages/home/Home.js";
 
 //styles
@@ -20,15 +21,20 @@ export default function App() {
           <div className="container">
             <Navbar />
             <Switch>
-              <Route path="/">
+              <Route exact path="/">
                 <Home />
               </Route>
               <Route path="/addartwork">
-                <AddArtwork />
+                {!user && <Redirect to="/" />}
+                {user && <AddArtwork />}
               </Route>
               <Route path="/signup">
                 {user && <Redirect to="/" />}
                 {!user && <Signup />}
+              </Route>
+              <Route path="/login">
+                {user && <Redirect to="/" />}
+                {!user && <Login />}
               </Route>
             </Switch>
           </div>
