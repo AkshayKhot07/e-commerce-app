@@ -1,7 +1,39 @@
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import { useAuthContext } from "./hooks/useAuthContext";
+
+//pages and components
+import Navbar from "./components/Navbar";
+import AddArtwork from "./pages/addartwork/AddArtwork";
+import Signup from "./pages/signup/Signup.js";
+import Home from "./pages/home/Home.js";
+
+//styles
 import "./App.css";
 
-function App() {
-  return <div className="App">App</div>;
-}
+export default function App() {
+  const { authIsReady, user } = useAuthContext();
 
-export default App;
+  return (
+    <div className="App">
+      {authIsReady && (
+        <BrowserRouter>
+          <div className="container">
+            <Navbar />
+            <Switch>
+              <Route path="/">
+                <Home />
+              </Route>
+              <Route path="/addartwork">
+                <AddArtwork />
+              </Route>
+              <Route path="/signup">
+                {user && <Redirect to="/" />}
+                {!user && <Signup />}
+              </Route>
+            </Switch>
+          </div>
+        </BrowserRouter>
+      )}
+    </div>
+  );
+}

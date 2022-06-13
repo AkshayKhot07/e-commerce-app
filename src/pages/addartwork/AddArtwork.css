@@ -1,0 +1,35 @@
+.add-artwork {
+  width: max-content;
+  padding: 20px;
+  background-color: #dcdcdc;
+  border-radius: 5px;
+  margin: 100px auto;
+}
+
+.add-artwork h2 {
+  margin-bottom: 40px;
+}
+
+.add-artwork span {
+  display: block;
+  margin: 10px 0px;
+}
+
+.add-artwork input {
+  width: 500px;
+  border: 1px solid darkgray;
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+
+.add-artwork button {
+  display: block;
+  margin-top: 20px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.artwork-file {
+  background-color: white;
+}
