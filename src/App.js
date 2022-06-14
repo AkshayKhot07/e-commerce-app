@@ -26,7 +26,12 @@ export default function App() {
               </Route>
               <Route path="/addartwork">
                 {!user && <Redirect to="/" />}
-                {user && <AddArtwork />}
+                {user && user.uid !== "4aBmeX3p2JSfaabIr6NoiVGNsIp1" && (
+                  <Redirect to="/" />
+                )}
+                {user && user.uid === "4aBmeX3p2JSfaabIr6NoiVGNsIp1" && (
+                  <AddArtwork />
+                )}
               </Route>
               <Route path="/signup">
                 {user && <Redirect to="/" />}
