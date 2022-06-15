@@ -30,3 +30,14 @@ p {
   padding: 8px;
   margin: 10px 0;
 }
+
+html {
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex-grow: 1;
+}
