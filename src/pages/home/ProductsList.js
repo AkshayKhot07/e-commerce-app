@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useCartContext } from "../../hooks/useCartContext";
 
 export const ProductsList = ({ products }) => {
   const [artworks, setArtworks] = useState(products);
+  const { dispatch } = useCartContext();
 
   const handleClick = (e, product) => {
     if (e.target.innerText === "+") {
@@ -32,6 +34,13 @@ export const ProductsList = ({ products }) => {
       );
     }
   };
+
+  useEffect(() => {
+    dispatch({
+      type: "UPDATED_ARTWORKSINVENTORY",
+      payload: artworks,
+    });
+  }, [artworks]);
 
   console.log(artworks);
 

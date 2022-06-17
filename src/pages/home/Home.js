@@ -1,16 +1,13 @@
 import { useCollection } from "../../hooks/useCollection";
-import { useCartContext } from "../../hooks/useCartContext";
-
 import { ProductsList } from "./ProductsList";
 
+//styles
 import "./Home.css";
 
 export default function Home() {
   const { documents, error } = useCollection("artworks");
-  const { cartCount, dispatch } = useCartContext();
-  // const [countItem, setCountItem] = useState(0);
 
-  console.log(documents);
+  // console.log(documents);
 
   let products;
   if (documents) {
@@ -19,51 +16,7 @@ export default function Home() {
     });
   }
 
-  console.log(products);
-
-  /*
-  const handleCount = (e, id) => {
-    if (e.target.innerText === "+") {
-      setCountItem(countItem + 1);
-    }
-    if (e.target.innerText === "-" && countItem > 0) {
-      setCountItem(countItem - 1);
-    }
-
-    documents.map((document) => {
-      if (document.id === id) {
-        document.count = countItem;
-      }
-    });
-  };
-  */
-
-  // const allArtworks = Array.from(
-  //   document.querySelectorAll(".artwork-container")
-  // );
-
-  // const handleIncrement = (id, e) => {
-  //   console.log(e.target);
-  //   console.log(id);
-  //   dispatch({ type: "CART_INCREMENT" });
-  // };
-
-  // const handleDecrement = (id, e) => {
-  //   console.log(e.target);
-  //   console.log(id);
-
-  //   dispatch({ type: "CART_DECREMENT" });
-  // };
-
-  // const changeCount = (e) => {
-  //   if (e == "+") {
-  //     setCountItem(countItem + 1);
-  //   }
-
-  //   if (e == "-" && countItem > 0) {
-  //     setCountItem(countItem - 1);
-  //   }
-  // };
+  // console.log(products);
 
   return (
     <div className="home-container">
