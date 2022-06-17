@@ -22,7 +22,12 @@ export default function AddArtwork() {
     console.log(artworkTitle, artworkPrice, imgUrl);
 
     //add artwork to firestore
-    await addDocument({ artworkTitle, artworkPrice, photoURL: imgUrl });
+    await addDocument({
+      artworkTitle,
+      artworkPrice,
+      photoURL: imgUrl,
+      count: 0,
+    });
 
     const artWorkFile = document.querySelector(".artwork-file");
     artWorkFile.value = null;

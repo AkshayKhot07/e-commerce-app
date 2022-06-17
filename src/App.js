@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
+import { CartContextProvider } from "./context/CartContext";
 
 //pages and components
 import Navbar from "./components/Navbar";
@@ -22,7 +23,9 @@ export default function App() {
             <Navbar />
             <Switch>
               <Route exact path="/">
-                <Home />
+                <CartContextProvider>
+                  <Home />
+                </CartContextProvider>
               </Route>
               <Route path="/addartwork">
                 {!user && <Redirect to="/" />}
