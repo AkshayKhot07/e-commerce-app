@@ -17,7 +17,7 @@ export const CartContextProvider = ({ children }) => {
   console.log("CartContextProvider:", state);
 
   return (
-    <CartContext.Provider value={{ ...state, dispatch }}>
+    <CartContext.Provider value={{ state, dispatch }}>
       {children}
     </CartContext.Provider>
   );

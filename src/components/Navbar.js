@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
+import NavbarCart from "./NavbarCart";
 
 //styles and images
 import "./Navbar.css";
-import CartIcon from "../assets/cart-icon.svg";
 
 export default function Navbar() {
   const { user } = useAuthContext();
@@ -21,10 +21,12 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-links">
-        <div className="cart-container">
+        <NavbarCart />
+
+        {/* <div className="cart-container">
           <img src={CartIcon} alt="cart icon" className="cart-icon" />
           <span className="items-count">0</span>
-        </div>
+        </div> */}
 
         {!user && (
           <>
