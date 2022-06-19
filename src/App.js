@@ -7,6 +7,7 @@ import AddArtwork from "./pages/addartwork/AddArtwork";
 import Signup from "./pages/signup/Signup.js";
 import Login from "./pages/login/Login";
 import Home from "./pages/home/Home.js";
+import Cart from "./pages/cart/Cart.js";
 
 //styles
 import "./App.css";
@@ -24,6 +25,9 @@ export default function App() {
             <Switch>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route path="/cart">
+                <Cart />
               </Route>
               <Route path="/addartwork">
                 {!user && <Redirect to="/" />}

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout";
 import NavbarCart from "./NavbarCart";
+import Home from "../pages/home/Home";
 
 //styles and images
 import "./Navbar.css";
@@ -21,7 +22,11 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-links">
-        <NavbarCart />
+        <div className="navbar-cart">
+          <NavLink to="/cart">
+            <NavbarCart />
+          </NavLink>
+        </div>
 
         {/* <div className="cart-container">
           <img src={CartIcon} alt="cart icon" className="cart-icon" />
