@@ -1,24 +1,79 @@
 import { useCartContext } from "../../hooks/useCartContext";
+import { useState, useEffect } from "react";
 
 //styles
 import "./Cart.css";
 
 export default function Cart() {
-  const { state } = useCartContext();
+  const { state, dispatch } = useCartContext();
+  let [products, setProducts] = useState(null);
 
-  let products = state;
-  if (products) {
-    products = products.filter((product) => product.count > 0);
+  if (!products) {
+    products = state;
   }
-  console.log("CARTS Section:", products);
+  let productsTotalPrice;
+  let productsFiltered;
+  if (products) {
+    productsFiltered = products.filter((product) => product.count > 0);
+    productsTotalPrice = productsFiltered
+      .map((product) => product.artworkPrice * product.count)
+      .reduce((acc, current) => {
+        return acc + current;
+      }, 0);
+  }
+
+  console.log("CARTS Section Filtered:", productsFiltered);
+
+  const handleClick = (e, artwork) => {
+    if (e.target.innerText === "+") {
+      setProducts(
+        products.map((product) => {
+          if (product.id === artwork.id) {
+            return {
+              ...product,
+              count: product.count + 1,
+            };
+          }
+          return product;
+        })
+      );
+    }
+
+    if (e.target.innerText === "-") {
+      setProducts(
+        products.map((product) => {
+          if (product.id === artwork.id) {
+            return {
+              ...product,
+              count: product.count - 1,
+            };
+          }
+          return product;
+        })
+      );
+    }
+  };
+
+  console.log("Carts Section Non Filtered:", products);
+
+  useEffect(() => {
+    dispatch({
+      type: "UPDATED_ARTWORKSINVENTORY",
+      payload: products,
+    });
+  }, [products]);
+
+  console.log("CARTS SECTION UPDATED_ARTWORKSINVENTORY:", products);
 
   return (
     <div className="cart-section">
       <h2>CART</h2>
-      {!products && <p>Cart is Empty...</p>}
-      {products && products.length === 0 && <p>Cart is Empty...</p>}
-      {products &&
-        products.map((product) => (
+      {!productsFiltered && <p>Cart is Empty...</p>}
+      {productsFiltered && productsFiltered.length === 0 && (
+        <p>Cart is Empty...</p>
+      )}
+      {productsFiltered &&
+        productsFiltered.map((product) => (
           <div key={product.id} className="product-container">
             <div className="product-details">
               <img
@@ -33,15 +88,26 @@ export default function Cart() {
             </div>
 
             <div className="product-cartcount">
-              <button className="cart-minus-btn">-</button>
+              <button
+                className="cart-minus-btn"
+                onClick={(e) => handleClick(e, product)}
+              >
+                -
+              </button>
               <span className="cart-count">{product.count}</span>
-              <button className="cart-plus-btn">+</button>
+              <button
+                className="cart-plus-btn"
+                onClick={(e) => handleClick(e, product)}
+              >
+                +
+              </button>
             </div>
           </div>
         ))}
-      {products && products.length > 0 && (
+      {productsFiltered && productsFiltered.length > 0 && (
         <div className="product-total-price">
-          <p>Total Price: ₹ 1088</p>
+          <p>Total Price: ₹ {productsTotalPrice}</p>
+          <button className="checkout-btn">CHECKOUT</button>
         </div>
       )}
     </div>

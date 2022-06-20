@@ -52,3 +52,14 @@
   border-radius: 5px;
   background-color: lightgrey; */
 }
+
+.checkout-btn {
+  background-color: indigo;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 7px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}
