@@ -1,12 +1,16 @@
 import { useCartContext } from "../../hooks/useCartContext";
 import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 //styles
 import "./Cart.css";
 
 export default function Cart() {
   const { state, dispatch } = useCartContext();
+  const { user } = useAuthContext();
   let [products, setProducts] = useState(null);
+  const history = useHistory();
 
   if (!products) {
     products = state;
@@ -55,6 +59,16 @@ export default function Cart() {
   };
 
   console.log("Carts Section Non Filtered:", products);
+
+  //Checkout
+  const handleCheckout = () => {
+    history.push("/checkout");
+
+    if (user) {
+      setProducts(null);
+      dispatch({ type: "RESET_ARTWORKSINVENTORY" });
+    }
+  };
 
   useEffect(() => {
     dispatch({
@@ -107,7 +121,9 @@ export default function Cart() {
       {productsFiltered && productsFiltered.length > 0 && (
         <div className="product-total-price">
           <p>Total Price: ₹ {productsTotalPrice}</p>
-          <button className="checkout-btn">CHECKOUT</button>
+          <button className="checkout-btn" onClick={handleCheckout}>
+            CHECKOUT
+          </button>
         </div>
       )}
     </div>

@@ -29,3 +29,8 @@
 .login h2 {
   margin-bottom: 40px;
 }
+
+.login-error {
+  margin-top: 8px;
+  color: red;
+}

@@ -45,7 +45,8 @@ export default function Login() {
 
         {!isPending && <button>Submit</button>}
         {isPending && <button disabled>loading</button>}
-        {error && <p>{error}</p>}
+        {/* {error && <p>{error}</p>} */}
+        {error && <p className="login-error">Please register/ signup first.</p>}
       </form>
     </div>
   );

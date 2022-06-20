@@ -1,0 +1,10 @@
+.checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.checkout p {
+  font-size: 30px;
+}

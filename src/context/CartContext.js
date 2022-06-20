@@ -6,6 +6,8 @@ export const cartReducer = (state, action) => {
   switch (action.type) {
     case "UPDATED_ARTWORKSINVENTORY":
       return action.payload;
+    case "RESET_ARTWORKSINVENTORY":
+      return null;
     default:
       return state;
   }
