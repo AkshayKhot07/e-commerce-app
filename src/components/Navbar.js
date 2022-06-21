@@ -46,7 +46,9 @@ export default function Navbar() {
 
         {user && (
           <>
-            <h3 className="orders">Orders</h3>
+            <h3 className="orders">
+              <NavLink to="/orders">Orders</NavLink>
+            </h3>
             <h3 className="logout" onClick={logout}>
               Logout
             </h3>

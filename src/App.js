@@ -10,6 +10,7 @@ import Login from "./pages/login/Login";
 import Home from "./pages/home/Home.js";
 import Cart from "./pages/cart/Cart.js";
 import Checkout from "./pages/checkout/Checkout";
+import Orders from "./pages/orders/Orders";
 
 //styles
 import "./App.css";
@@ -40,6 +41,10 @@ export default function App() {
               </Route>
               <Route path="/cart">
                 <Cart />
+              </Route>
+              <Route path="/orders">
+                {!user && <Redirect to="/login" />}
+                {user && <Orders />}
               </Route>
               <Route path="/checkout">
                 {!user && <Redirect to="/login" />}

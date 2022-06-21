@@ -2,6 +2,7 @@ import { useCartContext } from "../../hooks/useCartContext";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useFirestore } from "../../hooks/useFirestore";
 
 //styles
 import "./Cart.css";
@@ -9,6 +10,7 @@ import "./Cart.css";
 export default function Cart() {
   const { state, dispatch } = useCartContext();
   const { user } = useAuthContext();
+  const { addDocument } = useFirestore("usersartworks");
   let [products, setProducts] = useState(null);
   const history = useHistory();
 
@@ -26,7 +28,10 @@ export default function Cart() {
       }, 0);
   }
 
-  console.log("CARTS Section Filtered:", productsFiltered);
+  console.log("CARTS Section Filtered:", {
+    productsFiltered,
+    uid: user.uid,
+  });
 
   const handleClick = (e, artwork) => {
     if (e.target.innerText === "+") {
@@ -61,10 +66,11 @@ export default function Cart() {
   console.log("Carts Section Non Filtered:", products);
 
   //Checkout
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     history.push("/checkout");
 
     if (user) {
+      await addDocument({ productsFiltered, uid: user.uid });
       setProducts(null);
       dispatch({ type: "RESET_ARTWORKSINVENTORY" });
     }
