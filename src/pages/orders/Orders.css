@@ -1,0 +1,16 @@
+#table-container {
+  width: 1000px;
+  border-spacing: 15px 10px;
+  /* border: 1px solid black; */
+  margin: 50px auto;
+  text-align: center;
+}
+
+th,
+td {
+  width: 200px;
+}
+
+#table-container tr {
+  border: 10px solid black;
+}

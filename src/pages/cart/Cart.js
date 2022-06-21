@@ -70,7 +70,11 @@ export default function Cart() {
     history.push("/checkout");
 
     if (user) {
-      await addDocument({ productsFiltered, uid: user.uid });
+      await addDocument({
+        productsFiltered,
+        orderDate: new Date().toLocaleString(),
+        uid: user.uid,
+      });
       setProducts(null);
       dispatch({ type: "RESET_ARTWORKSINVENTORY" });
     }
