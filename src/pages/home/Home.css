@@ -52,3 +52,15 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .home-artwork {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    row-gap: 40px;
+    margin: 20px 0px;
+  }
+}

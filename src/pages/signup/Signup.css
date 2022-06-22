@@ -29,3 +29,9 @@
 .signup h2 {
   margin-bottom: 40px;
 }
+
+@media (max-width: 650px) {
+  .signup input {
+    width: 300px;
+  }
+}

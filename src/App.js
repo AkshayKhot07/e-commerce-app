@@ -67,10 +67,10 @@ export default function App() {
                 {!user && <Signup />}
               </Route>
               <Route path="/login">
+                {user && <Redirect to="/" />}
                 {user && productsCount && productsCount.length > 0 && (
                   <Redirect to="/cart" />
                 )}
-                {user && <Redirect to="/" />}
                 {!user && <Login />}
               </Route>
             </Switch>

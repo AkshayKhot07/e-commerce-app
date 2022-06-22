@@ -28,10 +28,7 @@ export default function Cart() {
       }, 0);
   }
 
-  console.log("CARTS Section Filtered:", {
-    productsFiltered,
-    uid: user.uid,
-  });
+  console.log("CARTS Section Filtered:", productsFiltered);
 
   const handleClick = (e, artwork) => {
     if (e.target.innerText === "+") {

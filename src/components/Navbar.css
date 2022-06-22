@@ -52,3 +52,19 @@ h3 {
 .navbar-links a.active {
   border-bottom: solid 2px indigo;
 }
+
+@media (max-width: 650px) {
+  .navbar {
+    display: flex;
+    border-bottom: 2px solid indigo;
+  }
+
+  .navbar-title {
+    margin-right: 20px;
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+  }
+}

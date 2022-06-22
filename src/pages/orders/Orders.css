@@ -1,9 +1,10 @@
 #table-container {
+  table-layout: fixed;
   width: 1000px;
-  border-spacing: 15px 10px;
-  /* border: 1px solid black; */
+  /* border-spacing: 15px 10px; */
   margin: 50px auto;
   text-align: center;
+  border-collapse: collapse;
 }
 
 th,
@@ -11,6 +12,22 @@ td {
   width: 200px;
 }
 
-#table-container tr {
-  border: 10px solid black;
+#table-container tr,
+td,
+th {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+@media (max-width: 650px) {
+  #table-container {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td,
+  tr {
+    width: 100%;
+  }
 }
